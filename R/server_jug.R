@@ -46,6 +46,7 @@
 #' @param log boolean that determines if server logging is done.  Defaults to TRUE
 # nocov start
 #' @param initial_value default value to use in \code{\link{execute_request}()}
+#' @export
 server <- function(schema, port = 8000L, log = TRUE, initial_value = NULL) {
 
   if (!requireNamespace("jug")) {
