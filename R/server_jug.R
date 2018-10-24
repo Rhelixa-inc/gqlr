@@ -197,7 +197,7 @@ server <- function(schema, port = 8000L, log = TRUE, initial_value = NULL) {
       NULL
     })
 
-  if (is.null(port)) {
+  if (!is.null(port)) {
     server %>% jug::serve_it(port = port)
   }
 
