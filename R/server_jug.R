@@ -42,11 +42,15 @@
 #' }
 #'
 #' @param schema Schema object to use execute requests
+#' @param host host the host address
 #' @param port web port to serve the server from.  Set port to \code{NULL} to not run the jug server and return it.
+#' @param daemonized whether or not to start a daemonized server (experimental)
+#' @param verbose verbose output?
 #' @param log boolean that determines if server logging is done.  Defaults to TRUE
 # nocov start
 #' @param initial_value default value to use in \code{\link{execute_request}()}
-server <- function(schema, port = 8000L, log = TRUE, initial_value = NULL) {
+#' @export
+server <- function(schema, host = '127.0.0.1', port = 8000L, daemonized=FALSE, verbose=FALSE, log = TRUE, initial_value = NULL) {
 
   if (!requireNamespace("jug")) {
     stop("jug must be installed.  install.packages('jug')")
@@ -196,8 +200,8 @@ server <- function(schema, port = 8000L, log = TRUE, initial_value = NULL) {
       NULL
     })
 
-  if (is.null(port)) {
-    server %>% jug::serve_it(port = port)
+  if (!is.null(port)) {
+    server %>% jug::serve_it(host = host, port = port, daemonized = daemonized, verbose = verbose)
   }
 
   invisible(server)
