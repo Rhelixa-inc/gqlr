@@ -4,12 +4,19 @@
 \alias{server}
 \title{Run basic GraphQL server}
 \usage{
-server(schema, port = 8000L, log = TRUE, initial_value = NULL)
+server(schema, host = "127.0.0.1", port = 8000L, daemonized = FALSE,
+  verbose = FALSE, log = TRUE, initial_value = NULL)
 }
 \arguments{
 \item{schema}{Schema object to use execute requests}
 
+\item{host}{host the host address}
+
 \item{port}{web port to serve the server from.  Set port to \code{NULL} to not run the jug server and return it.}
+
+\item{daemonized}{whether or not to start a daemonized server (experimental)}
+
+\item{verbose}{verbose output?}
 
 \item{log}{boolean that determines if server logging is done.  Defaults to TRUE}
 
